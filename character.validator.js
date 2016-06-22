@@ -1,14 +1,8 @@
 'use strict';
+var Character = require('./character');
 
 function stringCheck(string) {
-  // console.log(string);
-  if (typeof string !== 'string') return false;
-  if (string.length < 1) {
-    return false;
-  }
-  if (string.match(/\W/)) {
-    return false;
-  }
+  if (typeof string !== 'string' || string.length < 1 || string.match(/\W/)) return false;
   return true;
 }
 
@@ -19,7 +13,7 @@ class Validator {
 
   isValid(character) {
     var isTrue = true;
-    if (typeof character === 'object') {
+    if (character instanceof Character) {
       for (var key in character) {
         if (propertyMap[key] === 'string') {
           if (!stringCheck(character[key])) isTrue = false;

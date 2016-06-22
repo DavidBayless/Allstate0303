@@ -1,23 +1,12 @@
 var expect = require('chai').expect;
 var Validator = require('../character.validator');
+var Character = require('../character');
 var validator;
 var character;
 
 beforeEach(function() {
   validator = new Validator();
-  character = {
-    name: 'Bob',
-    race: 'Gnome',
-    class: 'Farmer',
-    weaponType: 'Pitchfork',
-    isLiving: true,
-    str: 11,
-    int: 7,
-    dex: 9,
-    wis: 10,
-    cha: 5,
-    con: 13
-  }
+  character = new Character('Bob', 'Gnome', 'Farmer', 'Pitchfork', true, 11, 7, 9, 10, 5, 13);
 });
 
 describe('Validator: XTREME EDITION', function() {
@@ -41,5 +30,5 @@ describe('Validator: XTREME EDITION', function() {
   it('should return false when a string is not a string', function() {
     character.name = 3;
     expect(validator.isValid(character)).to.equal(false);
-  })
+  });
 });
